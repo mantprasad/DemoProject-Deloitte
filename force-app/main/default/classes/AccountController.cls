@@ -1,4 +1,16 @@
 public with sharing class AccountController {
+    
+    @AuraEnabled(cacheable=true)
+    public static Account getAccountByName(String nameOfAccount) {
+        return [
+            SELECT Id, Name 
+            FROM Account
+            WHERE Name =: nameOfAccount
+            WITH SECURITY_ENFORCED 
+            LIMIT 1
+        ]; 
+    }
+
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {
         return [
