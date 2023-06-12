@@ -14,7 +14,7 @@ public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {
         return [
-            SELECT Id, Name, website, OwnerId
+            SELECT Id, Name, website
             FROM Account 
             WITH SECURITY_ENFORCED 
             LIMIT 10
