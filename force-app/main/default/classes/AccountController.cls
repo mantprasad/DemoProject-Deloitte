@@ -18,4 +18,15 @@ public with sharing class AccountController {
             LIMIT 1
         ];
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccountById(Set<Id> setOfAccountId) {
+        return [
+            SELECT Id, Name, Phone, Type
+            FROM Account
+            WHERE Id in : setOfAccountId
+            WITH SECURITY_ENFORCED
+        ];
+    }
+
 }
