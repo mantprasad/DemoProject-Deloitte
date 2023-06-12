@@ -3,7 +3,7 @@ public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static Account getAccountByName(String nameOfAccount) {
         return [
-            SELECT Id, Name 
+            SELECT Id, Name
             FROM Account
             WHERE Name =: nameOfAccount
             WITH SECURITY_ENFORCED 
@@ -14,7 +14,7 @@ public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {
         return [
-            SELECT Id, Name, website, OwnerId
+            SELECT Id, Name
             FROM Account 
             WITH SECURITY_ENFORCED 
             LIMIT 10
@@ -25,7 +25,7 @@ public with sharing class AccountController {
     public static Account getSingleAccount() {
         return [
             SELECT Id, Name, Phone, Type,
-                website, OwnerId, AnnualRevenue
+                website, OwnerId
             FROM Account
             WITH SECURITY_ENFORCED
             LIMIT 1
