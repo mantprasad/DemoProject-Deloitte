@@ -6,7 +6,7 @@ public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static Account getSingleAccountByName(String nameOfAccount) {
         return [
-            SELECT Id, Name, Phone, Type
+            SELECT Id, Name, Phone, Type,OwnerId
             FROM Account
             WHERE Name =: nameOfAccount
             WITH SECURITY_ENFORCED
